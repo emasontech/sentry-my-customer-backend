@@ -27,7 +27,7 @@ Step 3: npm run start
 
 Step 4: Go to http://localhost:5000
 
-A welcome message will come up with status code 200
+you will get to /docs section to at this point you are ready to work cheers
 
 #### Creating a pull request
 Run <code>git branch</code> It should show that you are on your current branch
