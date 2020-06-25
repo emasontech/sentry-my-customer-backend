@@ -1,7 +1,7 @@
 const router = require("express").Router(),
             ejs = require("ejs");
 
-router.get("/", (req, res)=>{
+router.get("/docs", (req, res)=>{
     res.render("documentation.ejs")
 });
 

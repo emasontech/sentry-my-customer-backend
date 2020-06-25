@@ -21,13 +21,15 @@ Step 6: Check out to the task branch | <code>git checkout -b <NAME_OF_THE_TASK><
 
 Step 1: npm install
 
-Step 2: Copy env.example to .env
+Step 2: create a .env file in your root file 
 
-Step 3: npm run start
+Step 3: Copy env.example to .env
 
-Step 4: Go to http://localhost:5000
+Step 4: npm run start
 
-you will get to /docs section to at this point you are ready to work cheers
+Step 5: Go to http://localhost:3000
+
+You will get 404 error page at this point you are ready to work cheers!!
 
 #### Creating a pull request
 Run <code>git branch</code> It should show that you are on your current branch
