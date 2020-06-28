@@ -29,9 +29,10 @@ Step 4: npm run start
 
 Step 5: Go to http://localhost:3000
 
-You will get 404 error page at this point you are ready to work cheers!!
+You will get documentation page at this point you are ready to work cheers!!
 
 #### Creating a pull request
+
 Run <code>git branch</code> It should show that you are on your current branch
 
 After implementing your task
