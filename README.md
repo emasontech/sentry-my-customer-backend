@@ -16,7 +16,6 @@ Step 6: Check out to the task branch | <code>git checkout -b <NAME_OF_THE_TASK><
 
 <code>e.g git checkout -b implemented_notification_api</code>
 
-
 ###TEAM SENTRY - Running the project locally
 
 Step 1: npm install
@@ -24,8 +23,6 @@ Step 1: npm install
 Step 2: create a .env file in your root file 
 
 Step 3: Copy env.example to .env
-
-Step 4: npm run start
 
 Step 5: Go to http://localhost:3000
 
@@ -45,7 +42,7 @@ Step 3: git pull upstream develop
 
 Step 4: git push origin < BRANCH_NAME >
 
-Go to the repository https://github.com/hngi/sentry-my-customer-backend
+Go to the repository https://github.com/hngi/sentry-my-customer-api
 
 As soon as you get there, you are going to see a green ‘compare and create a pull request’
 
