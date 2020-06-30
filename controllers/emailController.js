@@ -35,6 +35,8 @@ module.exports = {
                 });
             }else{
                 if(foundCustomer.email  && foundCustomer.email != "Not set" || undefined){
+                    let myobj = JSON.stringify(foundCustomer) 
+                    let foundCustomer = JSON.parse(myobj)
                     const recipient = foundCustomer.email,
                         subject = req.body.subject,
                         text = req.body.text;
