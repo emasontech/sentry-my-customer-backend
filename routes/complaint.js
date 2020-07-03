@@ -4,7 +4,7 @@ const complaintsController = require("../controllers/complaints.controller");
 const auth = require("../auth/auth");
 
 // Get all complaints
-router.get("/complaint/all", auth, complaintsController.findAll);
+router.get("/complaint/all",auth, complaintsController.findAll);
 
 // Update a complaint
 router.put("/complaint/update/:id", auth, complaintsController.update);
