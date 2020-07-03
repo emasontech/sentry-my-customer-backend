@@ -16,20 +16,20 @@ Step 6: Check out to the task branch | <code>git checkout -b <NAME_OF_THE_TASK><
 
 <code>e.g git checkout -b implemented_notification_api</code>
 
-
 ###TEAM SENTRY - Running the project locally
 
 Step 1: npm install
 
-Step 2: Copy env.example to .env
+Step 2: create a .env file in your root file 
 
-Step 3: npm run start
+Step 3: Copy env.example to .env
 
-Step 4: Go to http://localhost:3000
+Step 5: Go to http://localhost:3000
 
-A welcome message will come up with status code 200
+You will get documentation page at this point you are ready to work cheers!!
 
 #### Creating a pull request
+
 Run <code>git branch</code> It should show that you are on your current branch
 
 After implementing your task
