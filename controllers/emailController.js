@@ -3,6 +3,7 @@ const Response = require('../util/response_manager'),
             HttpStatus = require('../util/http_status'),
             express = require('express'),
             nodemailer = require('nodemailer'),
+            userModel = require("../models/store_admin"),
             Customer = require("../models/customer");
 
 
@@ -22,62 +23,74 @@ module.exports = {
         });
 
         //Find a customer and get the email
-        const id = req.params.customer_id;
-        Customer.findById(id, (err, foundCustomer)=>{
-            if(err){
+        const identifier = req.user.phone_number;
+        const customer_id = req.params.customer_id;
+        const store_id = req.body.store_id; // the store where the customer is located
+        userModel.findOne({
+                    identifier
+                }, (err, foundUser) => {
+            if (err || foundUser == null || foundUser == undefined) {
                 res.status(404).json({
                     success: false,
                     message: "Customer not found",
                     error: {
                         statusCode: 404,
-                        description: "Could not find a customer with the id: " + id
+                        description: "Could not find a store admin with the identifier: " + identifier
                     }
                 });
             }else{
-                if(foundCustomer.email  && foundCustomer.email != "Not set" || undefined){
-                    let myobj = JSON.stringify(foundCustomer) 
-                    let foundCustomer = JSON.parse(myobj)
-                    const recipient = foundCustomer.email,
-                        subject = req.body.subject,
-                        text = req.body.text;
 
-                    const params = {
-                        from: MAIL_USERNAME,
-                        to: recipient,
-                        subject: subject,
-                        text: text
-                    };
+                                    const params = {
+                                        from: MAIL_USERNAME,
+                                        to: recipient,
+                                        subject: subject,
+                                        text: text
+                                    };
 
-                    transporter.sendMail(params, function (error, info) {
-                        if (error) {
-                            res.status(401).json({
-                                success: false,
-                                message: "Bad request",
-                                error:{
-                                    statusCode: 401,
-                                    description: error
+                                    transporter.sendMail(params, function (error, info) {
+                                        if (error) {
+                                            res.status(401).json({
+                                                success: false,
+                                                message: "Bad request",
+                                                error: {
+                                                    statusCode: 401,
+                                                    description: error
+                                                }
+                                            })
+                                        } else {
+                                            res.status(200).json({
+                                                success: true,
+                                                message: "Email sent successfully",
+                                                data: {
+                                                    statusCode: 200,
+                                                    description: info
+                                                }
+                                            })
+                                        }
+                                    });
+                                } else {
+                                    return res.status(400).json({
+                                        success: false,
+                                        message: "Email Not set",
+                                        error: {
+                                            statusCode: 400,
+                                            description: "Please update customer email address in order to send emails"
+                                        }
+                                    })
                                 }
-                            })
-                        } else {
-                            res.status(200).json({
-                                success: true,
-                                message: "Email sent successfully",
-                                data: {
-                                    statusCode: 200,
-                                    description: info
-                                }
-                            })
+                            }else{
+                                return res.send({
+                                    status: "fail",
+                                    message: "No customer with id " + customer_id + " in store " + stores[i].store_name
+                                })
+                            }
                         }
-                    });
-                }else{
-                    res.status(400).json({
-                        success: false,
-                        message: "Bad request",
-                        error: {
-                            statusCode: 400,
-                            description: "Please update customer email address in order to send emails"
-                        }
-                    })
+                    }else{
+                        return res.send({
+                            status: "fail",
+                            message: "store doesn't exists"
+                        })
+                    }
                 }
             }
         })
